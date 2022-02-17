@@ -64,7 +64,7 @@ mutation {
 
 Listing all _Posts_ is simple, just do:
 
-```grapqhl
+```graphql
 query {
   allPosts {
     id,
