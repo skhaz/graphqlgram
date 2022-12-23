@@ -32,11 +32,9 @@ const main = async () => {
 
         const { id } = jwt.verify(token, JWT_SECRET) as JwtDecoded
 
-        const user = await UserModel.findById(id)
-
-        return { user: user as User }
+        return { user: await UserModel.findById(id) }
       } catch {
-        return { user: null }
+        return {}
       }
     },
     listen: { port: 3000 },
