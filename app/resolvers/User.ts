@@ -1,10 +1,9 @@
-import { Resolver, Arg, Query, Mutation } from 'type-graphql'
-import jwt from 'jsonwebtoken'
-import * as bcrypt from 'bcrypt'
-
 import { JWT_SECRET } from '../constants'
 import { User, UserModel } from '../entities/User'
 import { UserInput } from './types/user'
+import * as bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { Resolver, Arg, Query, Mutation } from 'type-graphql'
 
 @Resolver((_of) => User)
 export class UserResolver {
@@ -29,7 +28,7 @@ export class UserResolver {
     }
 
     {
-      const salt = await bcrypt.genSalt(16)
+      const salt = await bcrypt.genSalt(8)
 
       const hash = await bcrypt.hash(password.toString(), salt)
 

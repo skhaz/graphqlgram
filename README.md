@@ -13,12 +13,7 @@ First of all, create an user:
 ```graphql
 mutation {
   createUser(
-    data: {
-      email: "user@example.com"
-      password: "secret"
-      name: "User"
-      image: "https://github.com/user.png"
-    }
+    data: { email: "user@example.com", password: "secret", name: "User", image: "https://github.com/user.png" }
   ) {
     email
     name
@@ -47,13 +42,7 @@ With the HTTP headers set, try to create a new _Post_:
 
 ```graphql
 mutation {
-  createPost(
-    data: {
-      image: "https://bucket/image.jpg"
-      title: "Some image"
-      description: "Some description"
-    }
-  ) {
+  createPost(data: { image: "https://bucket/image.jpg", title: "Some image", description: "Some description" }) {
     image
     title
     description
@@ -67,10 +56,10 @@ Listing all _Posts_ is simple, just do:
 ```graphql
 query {
   allPosts {
-    id,
-    image,
-    title,
-    description,
+    id
+    image
+    title
+    description
     author
   }
 }
@@ -84,11 +73,7 @@ Updating a post that user owns:
 mutation {
   updatePost(
     id: "post-id"
-    data: {
-      image: "https://bucket/image2.jpg"
-      title: "Updated title"
-      description: "Updated description"
-    }
+    data: { image: "https://bucket/image2.jpg", title: "Updated title", description: "Updated description" }
   ) {
     id
     image
@@ -101,7 +86,7 @@ mutation {
 
 Deleting a post:
 
-``` graphql
+```graphql
 mutation {
   deletePost(id: "post-id")
 }

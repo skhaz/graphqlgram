@@ -1,8 +1,7 @@
+import { User } from './User'
+import { prop as Property, getModelForClass } from '@typegoose/typegoose'
 import { ObjectId } from 'mongodb'
 import { ObjectType, Field, ID } from 'type-graphql'
-import { prop as Property, getModelForClass } from '@typegoose/typegoose'
-
-import { User } from './User'
 
 export type Ref<T> = T | ObjectId
 

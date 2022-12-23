@@ -1,8 +1,7 @@
-import { Resolver, Arg, Query, Mutation, Authorized, Ctx } from 'type-graphql'
-
 import { Post, PostModel } from '../entities/Post'
-import { PostInput } from './types/post'
 import { Context } from '../types'
+import { PostInput } from './types/post'
+import { Resolver, Arg, Query, Mutation, Authorized, Ctx } from 'type-graphql'
 
 @Resolver((_of) => Post)
 export class PostResolver {
@@ -35,7 +34,11 @@ export class PostResolver {
 
   @Authorized()
   @Mutation(() => Post)
-  async updatePost(@Arg('id') id: string, @Arg('data') { image, title, description }: PostInput, @Ctx() { user }: Context): Promise<Post> {
+  async updatePost(
+    @Arg('id') id: string,
+    @Arg('data') { image, title, description }: PostInput,
+    @Ctx() { user }: Context
+  ): Promise<Post> {
     const post = await PostModel.findOne({ _id: id, author: user?.id })
 
     if (!post) {

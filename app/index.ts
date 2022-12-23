@@ -1,16 +1,15 @@
-import express from 'express'
-import { ApolloServer } from 'apollo-server-express'
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
-import { buildSchema } from 'type-graphql'
-import { connect } from 'mongoose'
-import jwt from 'jsonwebtoken'
-
-import { JWT_SECRET, MONGO_DSN } from './constants'
 import { authChecker } from './auth'
-import { Context, JwtDecoded } from './types'
-import { UserResolver } from './resolvers/User'
-import { PostResolver } from './resolvers/Post'
+import { JWT_SECRET, MONGO_DSN } from './constants'
 import { User, UserModel } from './entities/User'
+import { PostResolver } from './resolvers/Post'
+import { UserResolver } from './resolvers/User'
+import { Context, JwtDecoded } from './types'
+import { ApolloServer } from '@apollo/server'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
+import { startStandaloneServer } from '@apollo/server/standalone'
+import jwt from 'jsonwebtoken'
+import { connect } from 'mongoose'
+import { buildSchema } from 'type-graphql'
 
 const main = async () => {
   const schema = await buildSchema({
@@ -24,7 +23,28 @@ const main = async () => {
 
   await mongoose.connection
 
-  const server = new ApolloServer({
+  const server = new ApolloServer<Context>({ schema, plugins: [ApolloServerPluginLandingPageGraphQLPlayground()] })
+
+  const { url } = await startStandaloneServer(server, {
+    context: async ({ req }) => {
+      try {
+        const token = req.headers.authorization || ''
+
+        const { id } = jwt.verify(token, JWT_SECRET) as JwtDecoded
+
+        const user = await UserModel.findById(id)
+
+        return { user: user as User }
+      } catch {
+        return { user: null }
+      }
+    },
+    listen: { port: 3000 },
+  })
+
+  console.log(`🚀  Server ready at ${url}`)
+  /*
+  const server = new ApolloServer<MyContext>({
     schema,
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     context: async ({ req }) => {
@@ -50,9 +70,10 @@ const main = async () => {
 
   await server.start()
 
-  server.applyMiddleware({ app })
+  server.expressMiddleware({ app })
 
   app.listen({ port: 3000 })
+  */
 }
 
 main().catch((error) => {
