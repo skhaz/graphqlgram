@@ -1,7 +1,7 @@
 import { JWT_SECRET } from '../constants'
 import { User, UserModel } from '../entities/User'
 import { UserInput } from './types/user'
-import * as bcrypt from 'bcrypt'
+import * as argon2 from 'argon2'
 import jwt from 'jsonwebtoken'
 import { Resolver, Arg, Query, Mutation } from 'type-graphql'
 
@@ -28,9 +28,7 @@ export class UserResolver {
     }
 
     {
-      const salt = await bcrypt.genSalt(8)
-
-      const hash = await bcrypt.hash(password.toString(), salt)
+      const hash = await argon2.hash(password.toString())
 
       const user = (
         await UserModel.create({
@@ -59,7 +57,7 @@ export class UserResolver {
       throw new Error('User not found!')
     }
 
-    const result = await bcrypt.compare(password as string, (user as User).password as string)
+    const result = await argon2.verify(password as string, (user as User).password as string)
 
     if (!result) {
       throw new Error('Wrong password.')

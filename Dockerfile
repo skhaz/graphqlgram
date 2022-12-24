@@ -10,7 +10,7 @@ RUN npm run build
 FROM base AS deps
 WORKDIR /opt
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm install --ignore-scripts --omit=dev
 
 FROM gcr.io/distroless/nodejs:18
 WORKDIR /app
