@@ -11,7 +11,7 @@ import jwt from 'jsonwebtoken'
 import { connect } from 'mongoose'
 import { buildSchema } from 'type-graphql'
 
-const main = async () => {
+const bootstrap = async () => {
   const schema = await buildSchema({
     resolvers: [UserResolver, PostResolver],
     emitSchemaFile: true,
@@ -41,39 +41,8 @@ const main = async () => {
   })
 
   console.log(`🚀  Server ready at ${url}`)
-  /*
-  const server = new ApolloServer<MyContext>({
-    schema,
-    plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-    context: async ({ req }) => {
-      try {
-        const token = req.headers.authorization || ''
-
-        const decoded = jwt.verify(token, JWT_SECRET)
-
-        const { id } = decoded as JwtDecoded
-
-        const user = await UserModel.findById(id)
-
-        const context: Context = { user: user as User }
-
-        return context
-      } catch {
-        return {}
-      }
-    },
-  })
-
-  const app = express()
-
-  await server.start()
-
-  server.expressMiddleware({ app })
-
-  app.listen({ port: 3000 })
-  */
 }
 
-main().catch((error) => {
+bootstrap().catch((error) => {
   console.error(error)
 })
