@@ -17,6 +17,8 @@ WORKDIR /app
 COPY --from=build /opt/dist .
 COPY --from=deps /opt/node_modules node_modules
 
-EXPOSE 3000
+ARG PORT=3000
+ENV PORT $PORT
+EXPOSE $PORT
 
 CMD ["index.js"]
