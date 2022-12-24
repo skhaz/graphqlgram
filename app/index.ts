@@ -1,15 +1,15 @@
-import { authChecker } from './auth'
-import { UserModel } from './entities/User'
-import { JWT_SECRET, MONGO_DSN, PORT } from './environment'
-import { PostResolver } from './resolvers/Post'
-import { UserResolver } from './resolvers/User'
-import { Context, JwtDecoded } from './types'
 import { ApolloServer } from '@apollo/server'
 import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
 import { startStandaloneServer } from '@apollo/server/standalone'
 import jwt from 'jsonwebtoken'
 import { connect } from 'mongoose'
 import { buildSchema } from 'type-graphql'
+import { authChecker } from '~/auth'
+import { UserModel } from '~/entities/User'
+import { JWT_SECRET, MONGO_DSN, PORT } from '~/environment'
+import { PostResolver } from '~/resolvers/Post'
+import { UserResolver } from '~/resolvers/User'
+import type { Context, JwtDecoded } from '~/types'
 
 const bootstrap = async () => {
   const schema = await buildSchema({

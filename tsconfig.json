@@ -9,7 +9,11 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "app",
+    "paths": {
+      "~/*": ["*"]
+    }
   },
   "include": ["app/**/*"]
 }
