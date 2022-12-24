@@ -1,5 +1,5 @@
-import { JWT_SECRET } from '../constants'
 import { User, UserModel } from '../entities/User'
+import { JWT_SECRET } from '../environment'
 import { UserInput } from './types/user'
 import * as argon2 from 'argon2'
 import jwt from 'jsonwebtoken'
