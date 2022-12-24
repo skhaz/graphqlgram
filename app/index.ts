@@ -1,5 +1,5 @@
 import { authChecker } from './auth'
-import { JWT_SECRET, MONGO_DSN } from './constants'
+import { JWT_SECRET, MONGO_DSN, PORT } from './constants'
 import { UserModel } from './entities/User'
 import { PostResolver } from './resolvers/Post'
 import { UserResolver } from './resolvers/User'
@@ -26,7 +26,7 @@ const bootstrap = async () => {
   const server = new ApolloServer<Context>({ schema, plugins: [ApolloServerPluginLandingPageGraphQLPlayground()] })
 
   const { url } = await startStandaloneServer(server, {
-    listen: { port: process.env.PORT ? Number.parseInt(process.env.PORT) : 3000 },
+    listen: { port: PORT },
     context: async ({ req }) => {
       try {
         const token = req.headers.authorization || ''
