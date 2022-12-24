@@ -26,7 +26,7 @@ const bootstrap = async () => {
   const server = new ApolloServer<Context>({ schema, plugins: [ApolloServerPluginLandingPageGraphQLPlayground()] })
 
   const { url } = await startStandaloneServer(server, {
-    listen: { port: 3000 },
+    listen: { port: process.env.PORT ? Number.parseInt(process.env.PORT) : 3000 },
     context: async ({ req }) => {
       try {
         const token = req.headers.authorization || ''
