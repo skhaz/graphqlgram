@@ -1,6 +1,6 @@
 import { authChecker } from './auth'
 import { JWT_SECRET, MONGO_DSN } from './constants'
-import { User, UserModel } from './entities/User'
+import { UserModel } from './entities/User'
 import { PostResolver } from './resolvers/Post'
 import { UserResolver } from './resolvers/User'
 import { Context, JwtDecoded } from './types'
