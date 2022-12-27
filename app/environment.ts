@@ -1,13 +1,9 @@
-export const PORT = process.env.PORT ? Number.parseInt(process.env.PORT) : 3000
+import { z } from 'zod'
 
-if (!process.env.JWT_SECRET) {
-  throw new Error('JWT_SECRET environment variable is not defined.')
-}
+const schema = z.object({
+  PORT: z.coerce.number().positive().default(3000),
+  JWT_SECRET: z.string().min(1),
+  MONGO_DSN: z.string().min(1),
+})
 
-export const JWT_SECRET = process.env.JWT_SECRET
-
-if (!process.env.MONGO_DSN) {
-  throw new Error('MONGO_DSN environment variable is not defined.')
-}
-
-export const MONGO_DSN = process.env.MONGO_DSN
+export const { PORT, JWT_SECRET, MONGO_DSN } = schema.parse(process.env)

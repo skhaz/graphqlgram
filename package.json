@@ -19,13 +19,13 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.1",
-    "type-graphql": "^2.0.0-beta.1"
+    "type-graphql": "^2.0.0-beta.1",
+    "zod": "^3.20.2"
   },
   "scripts": {
     "build": "tsc",
     "format": "prettier '**/*' --write --ignore-unknown",
     "prestart": "npm run build",
-    "start": "node .",
-    "prepare": "husky install"
+    "start": "node ."
   }
 }
