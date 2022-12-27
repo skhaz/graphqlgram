@@ -1,7 +1,7 @@
+import { Post, PostModel } from '../entities/Post'
+import { Context } from '../types'
+import { PostInput } from './types/post'
 import { Resolver, Arg, Query, Mutation, Authorized, Ctx } from 'type-graphql'
-import { Post, PostModel } from '~/entities/Post'
-import { PostInput } from '~/resolvers/types/post'
-import { Context } from '~/types'
 
 @Resolver((_of) => Post)
 export class PostResolver {

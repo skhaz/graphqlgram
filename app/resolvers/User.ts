@@ -1,9 +1,9 @@
+import { User, UserModel } from '../entities/User'
+import { JWT_SECRET } from '../environment'
+import { UserInput } from './types/user'
 import * as argon2 from 'argon2'
 import jwt from 'jsonwebtoken'
 import { Resolver, Arg, Query, Mutation } from 'type-graphql'
-import { User, UserModel } from '~/entities/User'
-import { JWT_SECRET } from '~/environment'
-import type { UserInput } from '~/resolvers/types/user'
 
 @Resolver((_of) => User)
 export class UserResolver {
