@@ -9,10 +9,10 @@ services:
       - mongo
     environment:
       - JWT_SECRET=secret
-      - MONGO_DSN=mongodb://root:password@mongo:27017/
+      - MONGO_DSN=mongodb://docker:docker@mongo:27017/
   mongo:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: docker
+      MONGO_INITDB_ROOT_PASSWORD: docker
