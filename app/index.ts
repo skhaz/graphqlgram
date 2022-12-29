@@ -35,7 +35,7 @@ const bootstrap = async () => {
 
         return { user: await UserModel.findById(id) }
       } catch {
-        return {}
+        return { user: undefined }
       }
     },
   })
