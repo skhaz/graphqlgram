@@ -57,7 +57,7 @@ export class UserResolver {
       throw new Error('User not found!')
     }
 
-    const result = await argon2.verify(password as string, (user as User).password as string)
+    const result = await argon2.verify((user as User).password as string, password as string)
 
     if (!result) {
       throw new Error('Wrong password.')
