@@ -1,7 +1,7 @@
 To run, just run
 
 ```bash
-docker-compose up
+make run
 ```
 
 Wait some time while docker is pulling the image of mongodb and building the container.
