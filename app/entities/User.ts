@@ -3,25 +3,25 @@ import { ObjectType, Field, ID } from 'type-graphql'
 
 @ObjectType()
 export class User {
-  [key: string]: any
+  [key: string]: unknown
   @Field(() => ID)
   public id: number
 
   @Field()
   @Property({ required: true })
-  public name: String
+  public name: string
 
   @Field()
   @Property({ required: true })
-  public email: String
+  public email: string
 
   @Field()
   @Property({ required: true })
-  public password: String
+  public password: string
 
   @Field()
   @Property({ required: true })
-  public image: String
+  public image: string
 
   public static async findByEmail(this: ReturnModelType<typeof User>, email: string) {
     return this.findOne({ email }).exec()

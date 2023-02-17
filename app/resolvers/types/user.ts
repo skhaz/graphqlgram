@@ -6,16 +6,16 @@ import { InputType, Field } from 'type-graphql'
 export class UserInput implements Partial<User> {
   @Field()
   @Length(1, 255)
-  name: String
+  name: string
 
   @Field()
   @IsEmail()
-  email: String
+  email: string
 
   @Field()
   @Length(1, 255)
-  password: String
+  password: string
 
   @Field()
-  image: String
+  image: string
 }

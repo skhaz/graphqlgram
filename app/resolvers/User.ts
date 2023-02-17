@@ -46,11 +46,11 @@ export class UserResolver {
   @Mutation(() => String)
   async logIn(
     @Arg('email')
-    email: String,
+    email: string,
 
     @Arg('password')
-    password: String
-  ): Promise<String> {
+    password: string
+  ): Promise<string> {
     const user = await UserModel.findByEmail(email as string)
 
     if (!user) {

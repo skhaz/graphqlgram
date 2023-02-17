@@ -6,25 +6,25 @@ export type Ref<T> = T | ObjectId
 
 @ObjectType()
 export class Post {
-  [key: string]: any
+  [key: string]: unknown
   @Field(() => ID)
   public id: number
 
   @Field()
   @Property({ required: true })
-  public image: String
+  public image: string
 
   @Field()
   @Property({ required: true })
-  public title: String
+  public title: string
 
   @Field()
   @Property({ required: true })
-  public description: String
+  public description: string
 
   @Field()
   @Property({ required: true })
-  public author: String
+  public author: string
 }
 
 export const PostModel = getModelForClass(Post)
