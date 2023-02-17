@@ -7,7 +7,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM base AS deps
+FROM base AS dependencies
 WORKDIR /opt
 COPY package*.json ./
 RUN npm install --omit=dev
@@ -15,7 +15,7 @@ RUN npm install --omit=dev
 FROM gcr.io/distroless/nodejs:18
 WORKDIR /app
 COPY --from=build /opt/dist .
-COPY --from=deps /opt/node_modules node_modules
+COPY --from=dependencies /opt/node_modules node_modules
 
 ARG PORT=3000
 ENV PORT $PORT
