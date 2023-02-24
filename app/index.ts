@@ -43,6 +43,10 @@ const bootstrap = async () => {
   console.log(`🚀  Server ready at ${url}`)
 }
 
+process.on('SIGINT', () => process.exit(0));
+process.on('SIGQUIT', () => process.exit(0));
+process.on('SIGTERM', () => process.exit(0));
+
 bootstrap().catch((error) => {
   console.error(error)
 })
