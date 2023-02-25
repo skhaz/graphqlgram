@@ -3,7 +3,7 @@ import { Length } from 'class-validator'
 import { InputType, Field } from 'type-graphql'
 
 @InputType()
-export class PostInput implements Partial<Post> {
+export class PostInput {
   @Field()
   @Length(1, 1024)
   image: string

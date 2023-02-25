@@ -3,7 +3,6 @@ import { ObjectType, Field, ID } from 'type-graphql'
 
 @ObjectType()
 export class User {
-  [key: string]: unknown
   @Field(() => ID)
   public id: number
 

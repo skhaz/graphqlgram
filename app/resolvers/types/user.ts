@@ -3,7 +3,7 @@ import { Length, IsEmail } from 'class-validator'
 import { InputType, Field } from 'type-graphql'
 
 @InputType()
-export class UserInput implements Partial<User> {
+export class UserInput {
   @Field()
   @Length(1, 255)
   name: string
