@@ -21,7 +21,7 @@
   "dependencies": {
     "@apollo/server": "^4.6.0",
     "@apollo/server-plugin-landing-page-graphql-playground": "^4.0.0",
-    "@typegoose/typegoose": "^11.0.2",
+    "@typegoose/typegoose": "^10.3.4",
     "argon2": "^0.30.3",
     "class-validator": "^0.14.0",
     "graphql": "^16.6.0",
